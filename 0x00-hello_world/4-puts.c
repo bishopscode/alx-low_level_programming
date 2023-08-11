@@ -11,7 +11,7 @@ int main(void)
 {
 	char myString[] = "Programming is like building a multilingual puzzle";
 
-	put(myString);/*outputs the content of the string and then a new line*/
+	Puts(myString);/*outputs the content of the string and then a new line*/
 
 	return (0);
 }
