@@ -1,26 +1,25 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
- * main - check the code
- *
- * Return: Always 0.
+ *_strncat - a program that concatenates two strings
+ *@n: the length of integer
+ *@src: the string's source
+ *@dest: the string's destination
+ *Return: pointer to the rsulting dest's string
  */
-int main(void)
-{
-	char s1[98] = "Hello ";
-	char s2[] = "World!\n";
-	char *ptr;
 
-	printf("%s\n", s1);
-	printf("%s", s2);
-	ptr = _strncat(s1, s2, 1);
-	printf("%s\n", s1);
-	printf("%s", s2);
-	printf("%s\n", ptr);
-	ptr = _strncat(s1, s2, 1024);
-	printf("%s", s1);
-	printf("%s", s2);
-	printf("%s", ptr);
-	return (0);
+char *_strncat(char *dest, char *src, int n)
+{
+	int a, b;
+
+	for (a = 0; dest[a] != '\0'; a++)
+	{
+		continue;
+	}
+	for (b = 0; src[b] != '\0' && b < n; b++)
+	{
+		dest[a + b] = src[b];
+	}
+	dest[a + b] = '\0';
+	return (dest);
 }
