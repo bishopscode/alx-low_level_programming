@@ -9,7 +9,7 @@ int _sqrt_recursion(int n);
 int is_prime_number(int n);
 int _putchar(char c);
 int _sqrt(int n, int i);
-
+int is_prime(int n, int i);
 
 
 
