@@ -1,42 +1,48 @@
 #include "main.h"
 
-int is_palindrome_recursive(char *s, int start, int end);
-
 /**
- * is_palindrome - Checks if a string is a palindrome.
- * @s: The string to check.
- * Return: 1 if s is a palindrome, 0 otherwise.
+ * _strlen_recursion - Returns the length of a string.
+ * @s: The string to find the length of.
+ * Return: The length of the string.
  */
-int is_palindrome(char *s)
+int _strlen_recursion(char *s)
 {
-	int length = _strlen_recursion(s);
-
-	if (length <= 1)
-	{
-		return (1); /* Empty string or single character is a palindrome */
-	}
-
-	return (is_palindrome_recursive(s, 0, length - 1)); /* Check recursively */
+	if (*s == '\0')
+		return (0);
+	else
+		return (1 + _strlen_recursion(s + 1));
 }
 
 /**
- * is_palindrome_recursive - Helper function to check if a str is a palindrome.
- * @s: The string to check.
- * @start: The starting index.
- * @end: The ending index.
- * Return: 1 if s is a palindrome, 0 otherwise.
+ * checker - Checks if a string is a palindrome recursively.
+ * @s: The string to be checked.
+ * @x: The index moving from the left.
+ * @y: The index moving from the right.
+ * Return: 1 if palindrome, 0 otherwise.
  */
-int is_palindrome_recursive(char *s, int start, int end)
+int checker(char *s, int x, int y)
 {
-	if (start >= end)
+	if (s[x] == s[y])
 	{
-		return (1); /* Base case: Palindrome check is complete */
+		if (x > y / 2)
+			return (1); /* Entire string has been checked */
+		else
+			return (checker(s, x + 1, y - 1)); /* Continue checking */
 	}
-	else if (s[start] != s[end])
-	{
+	else
 		return (0); /* Characters don't match, not a palindrome */
-	}
+}
 
-	return (is_palindrome_recursive(s, start + 1, end - 1)); /* Recurse to cntr */
+/**
+ * is_palindrome - Checks if a string is a palindrome.
+ * @s: The string to be checked.
+ * Return: 1 if palindrome, 0 otherwise.
+ */
+int is_palindrome(char *s)
+{
+	if (*s == '\0')
+		return (1); /* Base case: Empty string is palindrome */
+
+	return (checker(s, 0, _strlen_recursion(s) - 1)); /* Check the string */
 }
 
