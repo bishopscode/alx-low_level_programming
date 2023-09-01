@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Array to store filenames
+filenames=()
+
+# Loop to read filenames from user input
+while true; do
+    read -p "Enter filename (or 'exit' to stop): " filename
+    if [ "$filename" = "exit" ]; then
+        break
+    fi
+    filenames+=("$filename")
+done
+
+# Loop through entered filenames
+for file in "${filenames[@]}"; do
+    touch "$file"       # Create the file
+    chmod +x "$file"    # Make the file executable
+
+    # Add shebang to README.md files
+    if [ "$(basename "$file")" = "README.md" ]; then
+        echo "#!/bin/bash" > "$file"
+        echo "Added shebang to $(basename "$file")"
+    fi
+done
+
