@@ -1,19 +1,13 @@
-#include "main.h"
+#include <unistd.h>
 
 /**
- *_strcpy - a program thatcopies the string pointed to by src, including
- *the terminating null byte (\0), to the buffer pointed to by dest
- *@src: character for checking
- *@dest:character for checking
- *Return: Always 0.(success)
+ * _putchar - Writes the character c to stdout
+ * @c: The character to print
+ * Return: return 0 always (success)
  */
 
-char *_strcpy(char *dest, char *src)
+int _putchar(char c)
 {
-	int m;
+	return (write(1, &c, 1));
 
-	for (m = 0; src[m] != '\0'; m++)
-		dest[m] = src[m];
-	dest[m] = '\0';
-	return (dest);
 }
