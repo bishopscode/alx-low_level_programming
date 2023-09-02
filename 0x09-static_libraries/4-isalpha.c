@@ -1,30 +1,16 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 /**
- *_strspn - a program that gets the length of a prefix substring
- *@accept: contains bytes
- *@s: initial seg.
- *Return: w
- */
+*_isalpha -checking for char alphabet
+*@c: the character for checking
+*Return: 1 if char is letter lower or rupper, otherwiser 0
+*/
 
-unsigned int _strspn(char *s, char *accept)
+int _isalpha(int c)
 {
-	int  z = 0, x, y;
 
-	for (x = 0; s[x] != '\0'; x++)
-	{
-		if (s[x] != 32)
-		{
-			for (y = 0; accept[y] != '\0'; y++)
-			{
-				if (s[x] == accept[y])
-					z++;
-			}
-		}
-		else
-			return (z);
-	}
-	return (z);
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+		return (1);
+	else
+		return (0);
 }
