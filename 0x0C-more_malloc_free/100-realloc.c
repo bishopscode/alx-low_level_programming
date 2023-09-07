@@ -1,55 +1,50 @@
-#include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
+#include "main.h"
 
 /**
- * _realloc - Reallocates a memory block using malloc and free
- * @ptr: A pointer to the memory previously allocated with malloc
- * @old_size: The size, in bytes, of the allocated space for ptr
- * @new_size: The new size, in bytes, of the new memory block
- *
- * Return: A pointer to the newly allocated memory block
- *         Returns NULL on failure or if new_size is equal to zero
+ * *_realloc - reallocates a memory block using malloc and free
+ * @ptr: the pointer to the memory
+ * @old_size: the size of the allocated memory for ptr
+ * @new_size: the new size of the new memory block
+ * Return: pointer to the newly allocated memory block
  */
+
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-	void *new_ptr;
-	unsigned int min_size;
+	char *ptr1;
+	char *ptr2;
 	unsigned int i;
 
-	if (new_size == 0)
+	if (new_size == old_size)
+		return (ptr);
+
+	if (new_size == 0 && ptr)
 	{
-		free(ptr); /* If new_size is 0 and ptr is not NULL, free ptr */
+		free(ptr);
 		return (NULL);
 	}
 
-	if (ptr == NULL)
+	if (!ptr)
+		return (malloc(new_size));
+
+	ptr1 = malloc(new_size);
+	if (!ptr1)
+		return (NULL);
+
+	ptr2 = ptr;
+
+	if (new_size < old_size)
 	{
-		return (malloc(new_size)); /*Equivalent to malloc(new_size) if ptr is NULL */
+		for (i = 0; i < new_size; i++)
+			ptr1[i] = ptr2[i];
 	}
 
-	if (new_size == old_size)
+	if (new_size > old_size)
 	{
-		return (ptr); /* Do nothing if new_size is equal to old_size */
+		for (i = 0; i < old_size; i++)
+			ptr1[i] = ptr2[i];
 	}
 
-	min_size = (old_size < new_size) ? old_size : new_size;
-
-	new_ptr = malloc(new_size); /* Allocate memory for the new block */
-
-	if (new_ptr == NULL)
-	{
-		return (NULL); /* Return NULL on malloc failure */
-	}
-
-	/* Copy contents from the old block to the new block */
-	for (i = 0; i < min_size; i++)
-	{
-		*((char *)new_ptr + i) = *((char *)ptr + i);
-	}
-
-	free(ptr); /* Free the old block */
-
-	return (new_ptr);
+	free(ptr);
+	return (ptr1);
 }
-
