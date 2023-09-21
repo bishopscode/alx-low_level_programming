@@ -1,11 +1,15 @@
 #include <stdio.h>
 
 /**
- * pre_main_message - Prints the pre-main message.
+ * print_message -  a fucn that
+ * prints
+ *
+ * Return: Always returns void
  */
-void pre_main_message(void)
+
+/* Function to be executed before main */
+void __attribute__((constructor))print_message(void)
 {
 	printf("You're beat! and yet, you must allow,\n");
 	printf("I bore my house upon my back!\n");
 }
-
